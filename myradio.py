@@ -15,6 +15,7 @@ urls = {
 
 # Create VLC instance
 instance = vlc.Instance()
+instance.log_unset()
 
 # Create media player
 player = instance.media_player_new()
@@ -29,8 +30,6 @@ def print_menu():
 
 # Function to play the selected URL
 def play_url(url):
-    print(colored('=================================================', 'green'))
-    print(colored("Now playing: " f"{url}", 'yellow'))
     media = instance.media_new(url)
     player.set_media(media)
     player.play()
@@ -44,6 +43,9 @@ while True:
         break
 
     if selection in urls:
+        print(colored('=================================================', 'green'))
+        print(colored("Now playing: " + urls[selection]["name"], 'yellow'))
+
         selected_url = urls[selection]["url"]
         play_url(selected_url)
         while player.get_state() != vlc.State.Ended:
