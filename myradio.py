@@ -22,11 +22,13 @@ player = instance.media_player_new()
 
 # Print the menu
 def print_menu():
-    print(colored('-------------------------------------------------', 'green'))
-    print("Select a radio station:")
+    print(colored('╔═════════════════════════════════════════════╗', 'green'))
+    print(colored('║            Select a radio station:          ║', 'green'))
+    print(colored('║                                             ║', 'green'))
     for key, value in urls.items():
-        print(colored(f"{key}: {value['name']}", 'yellow'))
-    print(colored('-------------------------------------------------', 'green'))
+        print(colored('║', 'green') + colored(f"  {key}: {value['name']: <40}", 'magenta') + colored('║', 'green'))
+    print(colored('║                                             ║', 'green'))
+    print(colored('╚═════════════════════════════════════════════╝', 'green'))
 
 # Function to play the selected URL
 def play_url(url):
@@ -44,12 +46,12 @@ while True:
 
     if selection in urls:
         print(colored('=================================================', 'green'))
-        print(colored("Now playing: " + urls[selection]["name"], 'yellow'))
+        print(colored("Now playing: " + urls[selection]["name"], 'magenta'))
 
         selected_url = urls[selection]["url"]
         play_url(selected_url)
         while player.get_state() != vlc.State.Ended:
-            selection = input("Enter 'q' to quit: ")
+            selection = input("Enter 'q' to go back: ")
             if selection == "q":
                 break
             pass
