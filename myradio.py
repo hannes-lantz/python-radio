@@ -54,6 +54,9 @@ while True:
             selection = input("Enter 'q' to go back: ")
             if selection == "q":
                 break
+            if selection in urls:
+                selected_url = urls[selection]["url"]
+                play_url(selected_url)
             pass
         player.stop()
 
